@@ -355,6 +355,8 @@ This software is proprietary and confidential. Unauthorized copying, distributio
 ## Contact
 
 - **Project**: N46.ai
+- **Owner**: ThirdAct Pte Ltd.
+- **Developer**: Jacques Dubnov | [JD@ThirdAct.ai](JD@ThirdAct.ai)    
 - **Repository**: [github.com/JacquesDubnov/N46-DEMO](https://github.com/JacquesDubnov/N46-DEMO)
 
 ---
