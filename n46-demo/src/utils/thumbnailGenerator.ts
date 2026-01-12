@@ -1,7 +1,7 @@
 import type { UserProfile } from '../types';
 
-// Stable Diffusion API URL - configure if using a different port or host
-const SD_API_URL = 'http://127.0.0.1:7860/sdapi/v1/txt2img';
+// Stable Diffusion API URL - proxied through Vite to avoid CORS issues
+const SD_API_URL = '/sdapi/v1/txt2img';
 
 /**
  * Thumbnail Generator for AI-powered presentation thumbnails
@@ -96,10 +96,10 @@ export async function generateThumbnail(
   }
 }
 
-// Check if Stable Diffusion API is available
+// Check if Stable Diffusion API is available (proxied through Vite)
 export async function checkSDAvailability(): Promise<boolean> {
   try {
-    const response = await fetch('http://127.0.0.1:7860/sdapi/v1/options', {
+    const response = await fetch('/sdapi/v1/options', {
       method: 'GET',
       signal: AbortSignal.timeout(2000),
     });

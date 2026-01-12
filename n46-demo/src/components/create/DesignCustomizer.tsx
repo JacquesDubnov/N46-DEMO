@@ -222,8 +222,22 @@ export function DesignCustomizer({
   }
 
   // Calculate preview visualization based on density
-  const previewLines = density < 25 ? 2 : density < 50 ? 3 : density < 75 ? 4 : 5;
-  const previewWidth = density < 25 ? '40%' : density < 50 ? '60%' : density < 75 ? '80%' : '95%';
+  function getDensityConfig(d: number): { lines: number; width: string; description: string } {
+    if (d < 25) {
+      return { lines: 2, width: '40%', description: 'Minimal text, maximum visual impact' };
+    }
+    if (d < 50) {
+      return { lines: 3, width: '60%', description: 'Balanced content with clear messaging' };
+    }
+    if (d < 75) {
+      return { lines: 4, width: '80%', description: 'Detailed content with supporting points' };
+    }
+    return { lines: 5, width: '95%', description: 'Comprehensive information density' };
+  }
+
+  const densityConfig = getDensityConfig(density);
+  const previewLines = densityConfig.lines;
+  const previewWidth = densityConfig.width;
 
   return (
     <div className="animate-fade-in">
@@ -307,14 +321,7 @@ export function DesignCustomizer({
                 </div>
               </div>
               <div className="mt-3 text-xs text-center text-n46-gray-500">
-                {density < 25
-                  ? 'Minimal text, maximum visual impact'
-                  : density < 50
-                    ? 'Balanced content with clear messaging'
-                    : density < 75
-                      ? 'Detailed content with supporting points'
-                      : 'Comprehensive information density'
-                }
+                {densityConfig.description}
               </div>
             </div>
           </div>

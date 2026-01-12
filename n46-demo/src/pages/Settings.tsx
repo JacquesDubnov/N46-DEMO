@@ -12,7 +12,7 @@ import {
   Database,
 } from 'lucide-react';
 import { useSettings } from '../hooks/useSettings';
-import { clearAllPresentations, getPresentationStats } from '../db';
+import { clearAllPresentations, getPresentationStats } from '../api/presentations';
 import { USER_PROFILES } from '../data/userProfiles';
 import { GAMMA_API_KEY } from '../config';
 import { ConfirmModal, useToast } from '../components/common';

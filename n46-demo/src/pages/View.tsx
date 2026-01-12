@@ -29,7 +29,7 @@ import {
   FolderLock,
   Folder,
 } from 'lucide-react';
-import { getPresentation, addPresentation } from '../db';
+import { getPresentation, addPresentation } from '../api/presentations';
 import { USER_PROFILES } from '../data/userProfiles';
 import { useToast } from '../components/common';
 import { GammaClient } from '../api/gamma';
@@ -309,6 +309,30 @@ export function View() {
         </Link>
 
         <div className="flex items-center gap-2">
+          {/* Send a Presenter Button */}
+          <button
+            onClick={() => addToast('info', 'Coming Soon')}
+            className="relative inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-300 overflow-hidden group mr-3"
+            style={{
+              background: 'linear-gradient(135deg, #ff4444 0%, #cc0000 100%)',
+              boxShadow: '0 0 20px rgba(255, 68, 68, 0.4), 0 0 40px rgba(255, 68, 68, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+            }}
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <Users className="w-4 h-4 relative z-10" />
+            <span className="relative z-10">Send a Presenter</span>
+          </button>
+
+          {/* Wavy Line Separator */}
+          <svg width="24" height="36" viewBox="0 0 24 36" className="text-n46-gray-300 mr-3">
+            <path
+              d="M12 0 Q0 9, 12 18 Q24 27, 12 36"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          </svg>
+
           {/* Database Connection Menu */}
           <div className="relative" ref={databaseRef}>
             <button

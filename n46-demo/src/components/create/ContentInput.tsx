@@ -40,13 +40,15 @@ export function ContentInput({
   const useCase = profile?.useCases.find(uc => uc.id === useCaseId);
 
   // Get example prompts for this profile/useCase combination
-  const getExamples = (): ExamplePrompt[] => {
+  function getExamples(): ExamplePrompt[] {
     if (!profileId || !useCaseId) return [];
-    const profileExamples = EXAMPLE_PROMPTS[profileId as keyof typeof EXAMPLE_PROMPTS];
+
+    const profileExamples = EXAMPLE_PROMPTS[profileId];
     if (!profileExamples) return [];
-    const useCaseExamples = profileExamples[useCaseId as keyof typeof profileExamples];
-    return (useCaseExamples as ExamplePrompt[] | undefined) || [];
-  };
+
+    const useCaseKey = useCaseId as keyof typeof profileExamples;
+    return profileExamples[useCaseKey] ?? [];
+  }
   const examples = getExamples();
 
   function handleExampleClick(example: { title: string; prompt: string }) {

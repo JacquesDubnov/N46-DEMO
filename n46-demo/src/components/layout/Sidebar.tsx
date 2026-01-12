@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Plus, Settings, FileText, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { getRecentPresentations } from '../../db';
+import { getRecentPresentations } from '../../api/presentations';
 import { Logo } from '../common';
 import type { Presentation } from '../../types';
 

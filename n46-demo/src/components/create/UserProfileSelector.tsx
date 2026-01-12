@@ -6,6 +6,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { USER_PROFILES, type UserProfileId } from '../../data/userProfiles';
+import { CheckIndicator } from '../common';
 
 interface UserProfileSelectorProps {
   selectedProfile: UserProfileId | null;
@@ -216,24 +217,11 @@ export function UserProfileSelector({ selectedProfile, onSelect }: UserProfileSe
 
               {/* Selected indicator */}
               {isSelected && (
-                <div
-                  className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: profile.color }}
-                >
-                  <svg
-                    className="w-3 h-3 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={3}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
+                <CheckIndicator
+                  color={profile.color}
+                  size="md"
+                  className="absolute top-2 right-2"
+                />
               )}
 
               {/* Color accent bar at bottom */}

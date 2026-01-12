@@ -8,7 +8,7 @@ import { DesignCustomizer } from './DesignCustomizer';
 import { GenerationProgress } from './GenerationProgress';
 import { ConfirmModal, Logo } from '../common';
 import { useGamma } from '../../hooks/useGamma';
-import { addPresentation, updatePresentation } from '../../db';
+import { addPresentation, updatePresentation } from '../../api/presentations';
 import type { UserProfileId } from '../../data/userProfiles';
 import type { Presentation, ImageStyle } from '../../types';
 import type { SlideDimensions } from '../../utils/profileOptimizer';

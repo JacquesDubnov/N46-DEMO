@@ -56,14 +56,32 @@ export function PresentationCard({ presentation, onDelete, onUpdateThumbnail, in
   // Check SD availability and auto-generate thumbnail if needed
   useEffect(() => {
     // Only try to generate for completed presentations without thumbnails
-    if (presentation.thumbnailUrl || presentation.status !== 'completed') return;
+    if (presentation.thumbnailUrl || presentation.status !== 'completed' || thumbnailUrl) return;
 
-    checkSDAvailability().then((available) => {
+    let cancelled = false;
+    let retryTimeout: NodeJS.Timeout;
+
+    async function tryGenerateThumbnail(retryCount = 0) {
+      if (cancelled) return;
+
+      const available = await checkSDAvailability();
+      if (cancelled) return;
+
       if (available) {
         autoGenerateThumbnail();
+      } else if (retryCount < 3) {
+        // Retry up to 3 times with increasing delays
+        retryTimeout = setTimeout(() => tryGenerateThumbnail(retryCount + 1), 2000 * (retryCount + 1));
       }
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }
+
+    tryGenerateThumbnail();
+
+    return () => {
+      cancelled = true;
+      if (retryTimeout) clearTimeout(retryTimeout);
+    };
+  }, [presentation.id, presentation.status, presentation.thumbnailUrl]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function autoGenerateThumbnail() {
     if (isGeneratingThumbnail || thumbnailUrl) return;

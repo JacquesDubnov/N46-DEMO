@@ -15,7 +15,7 @@ import {
   getPresentationStats,
   deletePresentation,
   updatePresentation,
-} from '../db';
+} from '../api/presentations';
 import type { Presentation } from '../types';
 
 export function Dashboard() {

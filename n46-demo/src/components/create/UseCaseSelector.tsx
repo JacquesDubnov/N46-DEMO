@@ -22,6 +22,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { USER_PROFILES, type UserProfileId } from '../../data/userProfiles';
+import { CheckIndicator } from '../common';
 
 interface UseCaseSelectorProps {
   profileId: UserProfileId | null;
@@ -152,24 +153,11 @@ export function UseCaseSelector({ profileId, selectedUseCase, onSelect }: UseCas
 
               {/* Selected indicator */}
               {isSelected && (
-                <div
-                  className="absolute top-3 right-3 w-4 h-4 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: profile.color }}
-                >
-                  <svg
-                    className="w-2.5 h-2.5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={3}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
+                <CheckIndicator
+                  color={profile.color}
+                  size="sm"
+                  className="absolute top-3 right-3"
+                />
               )}
             </button>
           );
